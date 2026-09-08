@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="bg" data-theme="draft">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Имоти</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Имоти">
+<meta name="theme-color" content="#064E3B">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAABuklEQVR42u3cMQ5BYRCFUUSolEor0ah0VJap06nsRalUSRQ2oHtyJ/Ocs4CRyJf5CxPTxXE7gW9mvgLEgTgQB+JAHIgDcSAOxIE4QByIA3EgDsSBOBAH4kAciAPEgTgQB+IgaZ75mOX+MHzI63oZx2SbA88K4kAcIA7EgTgQB+JAHIiDtqb+TRCbA3EgDgJC9xzzzXr4kPf9MY7JNgeeFcSBOEAciANxIA7EgTgQB22558DmQByIgwT3HAWTbQ48K4gDcYA4EAfiQByIA3EgDtpyz4HNgTgQBwnuOQom2xx4VhAH4gBxIA7EgTgQB+JAHLTlngObA3EgDhLccxRMtjnwrCAOxAHiQByIA3EgDsSBOGjLPQc2B+JAHCS45yiYbHPgWUEciAPEgTgQB+JAHIgDcdCWew5sDsSBOEhwz1Ew2ebAs4I4EAeIA3EgDsSBOBAH4qAt9xzYHIgDcZDgnqNgss2BZwVxIA4QB+JAHIgDcSAOxEFb7jmwORAH4iDhx/ccz/PNd1prddrZHHhWEAfiQByIA3Hwp/y2gs2BOBAH4kAciANxIA7EgThAHIgDcSAOxIE4EAfdfQALA1IHkMn4+AAAAABJRU5ErkJggg==">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAABuklEQVR42u3cMQ5BYRCFUUSolEor0ah0VJap06nsRalUSRQ2oHtyJ/Ocs4CRyJf5CxPTxXE7gW9mvgLEgTgQB+JAHIgDcSAOxIE4QByIA3EgDsSBOBAH4kAciAPEgTgQB+IgaZ75mOX+MHzI63oZx2SbA88K4kAcIA7EgTgQB+JAHIiDtqb+TRCbA3EgDgJC9xzzzXr4kPf9MY7JNgeeFcSBOEAciANxIA7EgTgQB22558DmQByIgwT3HAWTbQ48K4gDcYA4EAfiQByIA3EgDtpyz4HNgTgQBwnuOQom2xx4VhAH4gBxIA7EgTgQB+JAHLTlngObA3EgDhLccxRMtjnwrCAOxAHiQByIA3EgDsSBOGjLPQc2B+JAHCS45yiYbHPgWUEciAPEgTgQB+JAHIgDcdCWew5sDsSBOEhwz1Ew2ebAs4I4EAeIA3EgDsSBOBAH4qAt9xzYHIgDcZDgnqNgss2BZwVxIA4QB+JAHIgDcSAOxEFb7jmwORAH4iDhx/ccz/PNd1prddrZHHhWEAfiQByIA3Hwp/y2gs2BOBAH4kAciANxIA7EgThAHIgDcSAOxIE4EAfdfQALA1IHkMn4+AAAAABJRU5ErkJggg==">
+<style>
+  /* ═══ THEMES ═══ */
+  [data-theme="emerald"]{
+    --paper:#F9FAFB; --card:#FFFFFF; --ink:#111827; --muted:#6B7280;
+    --line:#E5E7EB; --hair:#F1F3F5; --accent:#0D9488; --tint:#CCFBF1;
+    --deep:#064E3B; --onDeep:#ECFDF5; --deepSoft:#ECFDF5;
+    --warn:#B45309; --warnbg:#FEF3C7; --bad:#EF4444; --badbg:#FEE2E2;
+    --lit:#0D9488; --unlit:#FFFFFF; --glass:6,78,59; --sh:6,78,59;
+    --L:38%; --H0:32; --H1:164; --RAMP:brand; --field:#F9FAFB;
+  }
+  [data-theme="draft"]{
+    --paper:#ECEDEF; --card:#FFFFFF; --ink:#0F1720; --muted:#6B7480;
+    --line:#D8DBE0; --hair:#E7E9EC; --accent:#16324F; --tint:#E2E9F1;
+    --warn:#B8801F; --warnbg:#FBF0DC; --bad:#8E3423; --badbg:#F8E4E0;
+    --lit:#16324F; --unlit:#FFFFFF; --glass:236,237,239; --sh:15,23,32; --L:40%; --H0:20; --H1:152;
+    --field:#FBFCFD;
+  }
+  [data-theme="night"]{
+    --paper:#0B1015; --card:#151D25; --ink:#E9EEF3; --muted:#8593A1;
+    --line:#26313B; --hair:#1D2630; --accent:#E3A648; --tint:#2A2114;
+    --warn:#E3A648; --warnbg:#2A2114; --bad:#E0785F; --badbg:#2E1A16;
+    --lit:#E3A648; --unlit:#1D2730; --glass:11,16,21; --sh:0,0,0; --L:54%; --H0:20; --H1:152;
+    --field:#101820;
+  }
+  [data-theme="cadastre"]{
+    --paper:#E6EAE3; --card:#F8F9F5; --ink:#17251E; --muted:#63705F;
+    --line:#CBD2C6; --hair:#DEE3D9; --accent:#1E3A2F; --tint:#DCE5D9;
+    --warn:#A6402D; --warnbg:#F2E2DD; --bad:#8A2E1E; --badbg:#EFDCD7;
+    --lit:#1E3A2F; --unlit:#F8F9F5; --glass:230,234,227; --sh:23,37,30; --L:34%; --H0:22; --H1:150;
+    --field:#FCFDFA;
+  }
+  :root{
+    --mono: ui-monospace,"SF Mono",SFMono-Regular,Menlo,monospace;
+    --sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+    --tabh: calc(56px + env(safe-area-inset-bottom));
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0; height:100%; overscroll-behavior-y:none}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.4; -webkit-font-smoothing:antialiased}
+  .num{font-family:var(--mono); font-variant-numeric:tabular-nums}
+  .eyebrow{font-family:var(--mono); font-size:9.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted)}
+  button{font:inherit; cursor:pointer; border:none; background:none; color:inherit}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .topbar{
+    position:sticky; top:0; z-index:20; background:rgba(var(--glass),.88);
+    backdrop-filter:saturate(180%) blur(14px); -webkit-backdrop-filter:saturate(180%) blur(14px);
+    border-bottom:1px solid var(--line); padding:calc(8px + env(safe-area-inset-top)) 16px 8px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .topbar h1{font-size:19px; margin:2px 0 0; letter-spacing:-.02em; font-weight:680}
+  [data-theme="cadastre"] .topbar h1{font-variant:small-caps; letter-spacing:.02em}
+  main{padding:14px 14px calc(var(--tabh) + 20px); max-width:760px; margin:0 auto}
+
+  .tabbar{
+    position:fixed; left:0; right:0; bottom:0; z-index:30; height:var(--tabh);
+    padding-bottom:env(safe-area-inset-bottom); background:rgba(var(--glass),.94);
+    backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+    border-top:1px solid var(--line); display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .tabbar button{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; font-size:10px; color:var(--muted); height:56px}
+  .tabbar button svg{width:21px; height:21px; stroke:currentColor; fill:none; stroke-width:1.6}
+  .tabbar button[aria-selected="true"]{color:var(--accent); font-weight:600}
+  .fab{
+    position:fixed; right:16px; bottom:calc(var(--tabh) + 14px); z-index:29;
+    width:52px; height:52px; border-radius:26px; background:var(--accent);
+    color:var(--paper); font-size:27px; line-height:1; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 20px rgba(var(--sh),.32);
+  }
+  [data-theme="night"] .fab{color:#0B1015}
+  .fab:active{transform:scale(.94)}
+
+  .card{
+    background:var(--card); border-radius:14px; margin-bottom:11px; overflow:hidden;
+    box-shadow:0 1px 2px rgba(var(--sh),.08), 0 6px 16px -10px rgba(var(--sh),.2);
+    display:grid; grid-template-columns:52px 1fr; cursor:pointer;
+  }
+  [data-theme="cadastre"] .card{border-radius:3px; border:1px solid var(--line); box-shadow:none}
+  [data-theme="night"] .card{border:1px solid var(--line)}
+  .card.dead{opacity:.45}
+  .facade{border-right:1px solid var(--hair); padding:12px 6px 10px; display:flex; flex-direction:column; align-items:center; gap:7px}
+  .rank{font-family:var(--mono); font-size:10px; color:var(--muted)}
+  .cbody{padding:12px 13px 13px; min-width:0}
+  .ctop{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+  .ctitle{font-size:16px; font-weight:640; margin:0; letter-spacing:-.015em; line-height:1.25}
+  .cmeta{font-size:12px; color:var(--muted); margin-top:3px}
+  .scorebox{text-align:right; flex:none}
+  .pct{font-family:var(--mono); font-size:24px; font-weight:640; line-height:1; letter-spacing:-.02em}
+  [data-theme="cadastre"] .scorebox .pct{
+    width:56px; height:56px; border:1.5px solid currentColor; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:17px; margin-left:auto;
+  }
+  [data-theme="night"] .pct{text-shadow:0 0 18px currentColor}
+  .band{font-family:var(--mono); font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; margin-top:4px; text-align:right}
+  .bar{height:4px; border-radius:2px; background:var(--hair); margin:10px 0 9px; overflow:hidden}
+  .bar i{display:block; height:100%; border-radius:2px}
+  .pills{display:flex; flex-wrap:wrap; gap:5px}
+  .pill{font-family:var(--mono); font-size:10px; padding:3px 7px; border-radius:5px; background:var(--hair); color:var(--muted); white-space:nowrap}
+  [data-theme="cadastre"] .pill{border-radius:2px}
+  .pill.on{background:var(--tint); color:var(--accent)}
+  .pill.warn{background:var(--warnbg); color:var(--warn)}
+  .pill.bad{background:var(--badbg); color:var(--bad)}
+  .money{font-family:var(--mono); font-size:12.5px; margin-top:5px}
+  .money s{color:var(--muted); text-decoration:none; font-size:11.5px}
+  .strip{display:flex; gap:5px; margin-top:9px; overflow-x:auto; -webkit-overflow-scrolling:touch}
+  .strip img{width:72px; height:54px; object-fit:cover; border-radius:7px; flex:none}
+
+  .panel{background:var(--card); border-radius:14px; padding:16px; box-shadow:0 1px 2px rgba(var(--sh),.08)}
+  [data-theme="cadastre"] .panel{border-radius:3px; border:1px solid var(--line); box-shadow:none}
+  [data-theme="night"] .panel{border:1px solid var(--line)}
+  .panel + .panel{margin-top:11px}
+  .hint{font-size:12px; color:var(--muted); line-height:1.45}
+  .sechead{display:flex; align-items:baseline; justify-content:space-between; margin:0 0 10px; gap:10px}
+
+  .picker{display:grid; grid-template-columns:1fr 30px 1fr; gap:8px; align-items:center; margin-bottom:12px}
+  .vs{font-family:var(--mono); font-size:11px; color:var(--muted); text-align:center}
+  select{
+    font:inherit; font-size:13px; width:100%; padding:9px 26px 9px 10px; border:1px solid var(--line);
+    background:var(--card); border-radius:9px; color:var(--ink); appearance:none;
+    background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);
+    background-position:calc(100% - 14px) 18px,calc(100% - 9px) 18px; background-size:5px 5px; background-repeat:no-repeat;
+  }
+  .duelhead{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center; padding-bottom:14px; border-bottom:1px solid var(--hair)}
+  .duelside{text-align:center}
+  .duelside .pct{font-size:31px}
+  .drow{display:grid; grid-template-columns:1fr 92px 1fr; gap:8px; align-items:center; padding:9px 0; border-bottom:1px solid var(--hair); font-size:12.5px}
+  .drow:last-of-type{border-bottom:none}
+  .dside{color:var(--muted); line-height:1.3}
+  .dside.win{color:var(--ink); font-weight:600}
+  .dside.r{text-align:right}
+  .dlabel{text-align:center; font-family:var(--mono); font-size:9px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+  .dbar{height:3px; background:var(--hair); border-radius:2px; margin-top:4px; display:flex}
+  .dbar.r{justify-content:flex-end}
+  .dbar span{height:100%; border-radius:2px}
+  .tally{display:flex; justify-content:space-between; gap:10px; font-family:var(--mono); font-size:12px; padding-top:12px; margin-top:4px; border-top:1px solid var(--ink)}
+
+  .chart{width:100%; height:250px; display:block}
+  .chart text{font-family:var(--mono); font-size:9px; fill:var(--muted)}
+
+  .wrow{display:grid; grid-template-columns:1fr 112px 34px; gap:10px; align-items:center; padding:9px 0; font-size:14px}
+  .wrow + .wrow{border-top:1px solid var(--hair)}
+  input[type=range]{width:100%; accent-color:var(--accent); height:22px}
+  .wval{font-family:var(--mono); font-size:13px; text-align:right; color:var(--muted)}
+  .wrow .del{color:var(--bad); font-size:12px; text-align:right}
+
+  .themes{display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin-top:10px}
+  .swatch{border:1.5px solid var(--line); border-radius:10px; padding:9px 7px; text-align:center; font-size:11.5px}
+  .swatch[aria-pressed="true"]{border-color:var(--accent); box-shadow:inset 0 0 0 1px var(--accent)}
+  .swatch .bars{display:flex; gap:3px; justify-content:center; margin-bottom:7px}
+  .swatch .bars i{width:12px; height:26px; border-radius:2px; display:block}
+
+  .sheet{position:fixed; inset:0; z-index:50; background:var(--paper); transform:translateY(100%); transition:transform .26s cubic-bezier(.32,.72,0,1); display:flex; flex-direction:column}
+  .sheet.open{transform:translateY(0)}
+  .sheet > header{padding:calc(10px + env(safe-area-inset-top)) 14px 10px; border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--card)}
+  .sheet > header b{font-size:16px}
+  .sheet .scroll{flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:14px 14px calc(24px + env(safe-area-inset-bottom))}
+  .link{color:var(--accent); font-size:14px; font-weight:600; padding:4px 2px}
+  .link.dim{color:var(--muted); font-weight:500}
+
+  .fld{background:var(--card); border-radius:12px; padding:13px 14px; margin-bottom:11px}
+  [data-theme="cadastre"] .fld{border-radius:3px; border:1px solid var(--line)}
+  [data-theme="night"] .fld{border:1px solid var(--line)}
+  .flabel{display:block; margin-bottom:9px}
+  .flabel b{font-size:13.5px; font-weight:640}
+  .flabel em{font-style:normal; color:var(--accent); font-size:11.5px; font-family:var(--mono)}
+  input[type=text],input[type=number],input[type=url]{font:inherit; font-size:16px; width:100%; padding:9px 11px; border:1px solid var(--line); background:var(--field); border-radius:9px; color:var(--ink)}
+  .seg{display:flex; flex-wrap:wrap; gap:6px}
+  .seg button{border:1px solid var(--line); background:var(--card); border-radius:9px; padding:8px 11px; font-size:13px; color:var(--muted); flex:1 1 auto}
+  .seg button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--card); font-weight:600}
+  [data-theme="night"] .seg button[aria-pressed="true"]{color:#0B1015}
+  .checks{display:grid; gap:6px}
+  .check{display:flex; align-items:center; gap:9px; border:1px solid var(--line); border-radius:9px; padding:9px 11px; font-size:13.5px; background:var(--card)}
+  .check input{accent-color:var(--accent); width:19px; height:19px; flex:none}
+  .check.on{border-color:var(--accent); background:var(--tint)}
+  .note input{font-size:13px; padding:8px 10px; border-style:dashed; margin-top:8px}
+  .g2{display:grid; grid-template-columns:1fr 1fr; gap:9px}
+  .sub{font-size:11px; color:var(--muted); display:block; margin-bottom:4px; font-family:var(--mono); letter-spacing:.05em}
+  .empty{background:var(--card); border-radius:14px; padding:38px 22px; text-align:center; color:var(--muted)}
+  .empty b{display:block; color:var(--ink); font-size:17px; margin-bottom:6px}
+  .status{font-family:var(--mono); font-size:10.5px; color:var(--muted); text-align:center; margin-top:16px; line-height:1.6}
+  .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.94); display:none; align-items:center; justify-content:center; z-index:60; padding:16px}
+  .lightbox.open{display:flex}
+  .lightbox img{max-width:100%; max-height:100%; object-fit:contain; border-radius:8px}
+  .btn{background:var(--accent); color:var(--card); border-radius:10px; padding:11px 16px; font-size:14.5px; font-weight:600; width:100%}
+  [data-theme="night"] .btn{color:#0B1015}
+  .btn.g{background:var(--card); color:var(--ink); border:1px solid var(--line)}
+  .btn.d{background:var(--card); color:var(--bad); border:1px solid var(--line)}
+  .btn[disabled]{opacity:.45}
+  .synbadge{font-family:var(--mono); font-size:10px; padding:3px 8px; border-radius:20px; background:var(--hair); color:var(--muted)}
+  .synbadge.ok{background:var(--tint); color:var(--accent)}
+  .synbadge.err{background:var(--badbg); color:var(--bad)}
+
+  /* ═══ EMERALD · 60-30-10 ═══
+     60% #F9FAFB фон · 30% #064E3B ленти и панели · 10% #0D9488 действия
+     #EF4444 само за статус (продаден / отпаднал / изтриване) */
+  [data-theme="emerald"] .topbar{background:var(--deep); border-bottom-color:var(--deep); color:var(--onDeep)}
+  [data-theme="emerald"] .topbar .eyebrow{color:#6EE7B7}
+  [data-theme="emerald"] .topbar .link.dim{color:rgba(236,253,245,.72)}
+  [data-theme="emerald"] .synbadge{background:rgba(255,255,255,.14); color:var(--onDeep)}
+  [data-theme="emerald"] .synbadge.ok{background:var(--accent); color:#fff}
+  [data-theme="emerald"] .synbadge.err{background:var(--bad); color:#fff}
+  [data-theme="emerald"] .tabbar{background:var(--deep); border-top-color:var(--deep)}
+  [data-theme="emerald"] .tabbar button{color:rgba(236,253,245,.58)}
+  [data-theme="emerald"] .tabbar button[aria-selected="true"]{color:#fff}
+  [data-theme="emerald"] .tabbar button[aria-selected="true"] svg{stroke:#5EEAD4}
+  [data-theme="emerald"] .facade{background:var(--deepSoft); border-right-color:#D1FAE5}
+  [data-theme="emerald"] .card{border:1px solid var(--line); box-shadow:0 1px 2px rgba(17,24,39,.05)}
+  [data-theme="emerald"] .panel{border:1px solid var(--line); box-shadow:none}
+  [data-theme="emerald"] .panel .eyebrow{color:var(--deep)}
+  [data-theme="emerald"] .flabel b{color:var(--deep)}
+  [data-theme="emerald"] .tally{border-top-color:var(--deep)}
+  [data-theme="emerald"] .fab{color:#fff; box-shadow:0 6px 18px rgba(13,148,136,.42)}
+  [data-theme="emerald"] .btn{color:#fff}
+  [data-theme="emerald"] .seg button[aria-pressed="true"]{color:#fff}
+  [data-theme="emerald"] .check.on{border-color:var(--accent)}
+  [data-theme="emerald"] .sheet > header{background:var(--deep); color:var(--onDeep)}
+  [data-theme="emerald"] .sheet > header .link{color:#5EEAD4}
+  [data-theme="emerald"] .sheet > header .link.dim{color:rgba(236,253,245,.72)}
+  .themes{grid-template-columns:repeat(2,1fr)}
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>
+    <div class="eyebrow" id="crumb">София · оглед</div>
+    <h1>Имоти</h1>
+  </div>
+  <div style="display:flex; align-items:center; gap:9px">
+    <span class="synbadge" id="synbadge">локално</span>
+    <button class="link dim" id="backupBtn">Бекъп</button>
+  </div>
+</div>
+
+<main>
+  <div id="v-list"></div>
+  <div id="v-duel" hidden></div>
+  <div id="v-value" hidden></div>
+  <div id="v-set" hidden></div>
+  <div class="status" id="status">…</div>
+</main>
+
+<button class="fab" id="addBtn" aria-label="Добави имот">+</button>
+
+<nav class="tabbar" role="tablist">
+  <button role="tab" aria-selected="true" data-v="list"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="5" rx="1.5"/><rect x="3" y="12" width="18" height="5" rx="1.5"/><path d="M6 20h12"/></svg>Класация</button>
+  <button role="tab" aria-selected="false" data-v="duel"><svg viewBox="0 0 24 24"><path d="M8 4v16M16 4v16"/><path d="M4 9h4M16 15h4"/></svg>Дуел</button>
+  <button role="tab" aria-selected="false" data-v="value"><svg viewBox="0 0 24 24"><path d="M4 20V5M4 20h16"/><circle cx="9" cy="15" r="1.6"/><circle cx="14" cy="10" r="1.6"/><circle cx="19" cy="13" r="1.6"/></svg>Цена</button>
+  <button role="tab" aria-selected="false" data-v="set"><svg viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h14"/><circle cx="9" cy="6" r="2.2" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="2.2" fill="currentColor" stroke="none"/><circle cx="11" cy="18" r="2.2" fill="currentColor" stroke="none"/></svg>Тежести</button>
+</nav>
+
+<section class="sheet" id="sheet" aria-hidden="true">
+  <header>
+    <button class="link dim" id="cancelBtn">Откажи</button>
+    <b id="sheetTitle">Имот</b>
+    <button class="link" id="saveBtn">Запази</button>
+  </header>
+  <div class="scroll" id="form"></div>
+</section>
+
+<div class="lightbox" id="lb"><img alt="" id="lbImg"></div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+const KEY='imoti-v3';
+const DRIVE_FILE='imoti-data.json';
+
+const CORE=[
+  {id:'type',label:'Конструкция',w:15},
+  {id:'sqm',label:'Квадратура',w:12},
+  {id:'floor',label:'Етаж',w:10},
+  {id:'condition',label:'Състояние',w:18},
+  {id:'extras',label:'Ремонтирани части',w:10},
+  {id:'district',label:'Квартал',w:12},
+  {id:'transport',label:'Транспорт',w:12},
+  {id:'lift',label:'Асансьор',w:6},
+  {id:'akt',label:'Акт',w:5},
+];
+const OPT={
+  type:[['tuhla','Тухла',100],['epk','ЕПК',65],['kashta','Къща',70],['panel','Панел',50]],
+  condition:[['obzaveden','Ремонтиран и обзаведен',100],['remontiran','Ремонтиран',78],['zaremont','За ремонт',35],['zamazka','На замазка',30]],
+  district:[['a','Много добър',100],['b','Добър',75],['c','Среден',50],['d','Слаб',25]],
+  transport:[['metro5','Метро ≤10 мин',100],['metro15','Метро ≤20 мин',80],['gt','Само ГТ',55],['slabo','Слаба свързаност',25]],
+  lift:[['da','Да',100],['ne','Не',0]],
+  akt:[['16','Акт 16',100],['15','Акт 15',65],['14','Акт 14',35]],
+};
+const EXTRAS=[['banya','Ремонтирана баня'],['kuhnya','Ремонтирана кухня'],['el','Нова ел. инсталация'],['dograma','Нова дограма'],['izolaciya','Изолация']];
+const DD=[['pasport','Технически паспорт'],['pokriv','Покривът е проверен'],['asansyor','Асансьорът е подменян'],['es','ЕС събира пари'],['preustroistva','Няма избити носещи стени']];
+const STATUS=[['nov','Не съм ходил'],['ogledan','Ходил съм'],['vtori','Втори оглед'],['otpadnal','Отпаднал'],['prodaden','Продаден']];
+const OUT=['otpadnal','prodaden'];
+const isOut=it=>OUT.includes(it.status);
+const THEMES=[['emerald','Изумруд',['#F9FAFB','#064E3B','#0D9488']],['draft','Чертеж',['#ECEDEF','#16324F','#FFFFFF']],['night','Нощен оглед',['#0B1015','#E3A648','#151D25']],['cadastre','Кадастър',['#E6EAE3','#1E3A2F','#A6402D']]];
+
+let state={items:[],weights:{},custom:[],sqmMin:55,sqmMax:100,duelA:null,duelB:null,
+  theme:'emerald',sync:{clientId:'',fileId:'',lastSync:0}};
+let editing=null, draft={}, draftPhotos=[];
+let gToken=null, gTokenExp=0, tokenClient=null, syncing=false;
+
+/* ═══ criteria ═══ */
+const allCriteria=()=>CORE.concat((state.custom||[]).map(c=>({id:c.id,label:c.label,w:c.w,kind:c.kind,isCustom:true})));
+const g=(gr,v)=>OPT[gr].find(o=>o[0]===v);
+const sc=(gr,v)=>{const h=g(gr,v);return h?h[2]:null};
+const lb=(gr,v)=>{const h=g(gr,v);return h?h[1]:'—'};
+const FLOOR_LABEL={first:'Първи етаж',top:'Последен етаж',mid:'Среден етаж',kashta:'Къща'};
+const FLOOR_SCORE={first:45,top:55,mid:100};
+function fpos(it){
+  if(it.type==='kashta')return 'kashta';
+  const f=+it.floor,t=+it.floors;
+  if(!f||!t)return null;
+  if(f<=1)return 'first'; if(f>=t)return 'top'; return 'mid';
+}
+function subScores(it){
+  const s={};
+  s.type=sc('type',it.type);
+  const q=+it.sqm;
+  s.sqm=q?Math.max(0,Math.min(100,Math.round((q-state.sqmMin)/Math.max(1,state.sqmMax-state.sqmMin)*100))):null;
+  const p=fpos(it);
+  s.floor=(p&&p!=='kashta')?FLOOR_SCORE[p]:null;
+  s.condition=sc('condition',it.condition);
+  s.extras=Math.round(EXTRAS.filter(e=>it.extras&&it.extras[e[0]]).length/EXTRAS.length*100);
+  s.district=sc('district',it.districtRating);
+  s.transport=sc('transport',it.transport);
+  s.lift=(p==='first'||p==='kashta')?null:sc('lift',it.lift);
+  s.akt=sc('akt',it.akt);
+  (state.custom||[]).forEach(c=>{
+    const v=(it.custom||{})[c.id];
+    if(v===undefined||v===null||v==='') { s[c.id]=null; return; }
+    s[c.id]= c.kind==='bool' ? (v?100:0) : Math.round(Math.max(0,Math.min(5,+v))/5*100);
+  });
+  return s;
+}
+function total(it){
+  const s=subScores(it); let a=0,w=0;
+  allCriteria().forEach(c=>{const v=s[c.id]; if(v==null)return;
+    const ww=+(state.weights[c.id]??c.w); a+=v*ww; w+=ww;});
+  return w?Math.round(a/w):0;
+}
+function ramp(v){
+  const cs=getComputedStyle(document.documentElement);
+  const L=cs.getPropertyValue('--L').trim()||'40%';
+  if(cs.getPropertyValue('--RAMP').trim()==='brand'){
+    // Под 55% = кехлибар (не коралово — то е запазено за статус).
+    // Над 55% = изумрудено семейство; по-доброто е по-наситено, не по-жълто.
+    const c=Math.max(0,Math.min(100,v));
+    if(c<55){const t=c/55; return `hsl(${Math.round(28+t*14)} 72% 44%)`}
+    const t=(c-55)/45;
+    return `hsl(${Math.round(170-t*4)} ${Math.round(58+t*22)}% ${Math.round(40-t*13)}%)`;
+  }
+  const h0=+cs.getPropertyValue('--H0')||20, h1=+cs.getPropertyValue('--H1')||152;
+  const t=Math.max(0,Math.min(100,v)-35)/65;
+  return `hsl(${Math.round(h0+t*(h1-h0))} 62% ${L})`;
+}
+const band=v=>v>=75?'Много добро':v>=55?'Добро':'Средно';
+const realPrice=it=>(+it.price||0)+(+it.remontBudget||0);
+const perSqm=it=>{const q=+it.sqm; return q&&realPrice(it)?Math.round(realPrice(it)/q):null};
+const fmt=n=>Number(n).toLocaleString('bg-BG');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const alive=()=>state.items.filter(i=>!i.deleted);
+const live=()=>alive().filter(i=>!isOut(i));
+const ranked=()=>alive().map(it=>({it,s:total(it)}))
+  .sort((a,b)=>isOut(a.it)-isOut(b.it)||b.s-a.s);
+
+/* ═══ elevation glyph ═══ */
+function facade(it,scale){
+  scale=scale||1;
+  const p=fpos(it);
+  if(p==='kashta'||!it.floors){
+    return `<svg width="${28*scale}" height="${58*scale}" viewBox="0 0 28 58" aria-hidden="true">
+      <path d="M3 28 L14 18 L25 28 V54 H3 Z" fill="none" stroke="var(--lit)" stroke-width="1.4"/>
+      <rect x="11" y="41" width="6" height="13" fill="var(--lit)"/></svg>`;
+  }
+  const t=Math.min(14,+it.floors||1), here=Math.min(t,+it.floor||1);
+  const rh=4.2,gp=1.2,W=28,H=t*(rh+gp)+5;
+  let r='';
+  for(let i=1;i<=t;i++){
+    const y=H-4-i*(rh+gp), on=i===here;
+    for(let k=0;k<3;k++){
+      r+=`<rect x="${3.5+k*7.2}" y="${y}" width="5.4" height="${rh}" rx=".6"
+        fill="${on?'var(--lit)':'var(--unlit)'}" stroke="${on?'var(--lit)':'var(--line)'}" stroke-width=".8"/>`;
+    }
+  }
+  return `<svg width="${W*scale}" height="${H*scale}" viewBox="0 0 ${W} ${H}" aria-hidden="true">${r}<rect x="1.5" y="${H-3.2}" width="25" height="2.2" fill="var(--ink)"/></svg>`;
+}
+
+/* ═══ storage ═══ */
+function normalize(it){
+  it.status=it.status||'nov'; it.dd=it.dd||{}; it.extras=it.extras||{};
+  it.notes=it.notes||{}; it.custom=it.custom||{}; it.photos=it.photos||[];
+  it.remontBudget=it.remontBudget||''; it.updatedAt=it.updatedAt||0;
+  return it;
+}
+async function load(){
+  try{const r=await window.storage.get(KEY); const d=r?JSON.parse(r.value):null;
+    if(d&&d.items)Object.assign(state,d);
+  }catch(e){}
+  if(!state.items.length){Object.assign(state,JSON.parse(JSON.stringify(SEED)));}
+  state.custom=state.custom||[];
+  state.sync=Object.assign({clientId:'',fileId:'',lastSync:0,scope:'https://www.googleapis.com/auth/drive'},state.sync||{});
+  allCriteria().forEach(c=>{if(state.weights[c.id]===undefined)state.weights[c.id]=c.w});
+  state.items.forEach(normalize);
+  if(state.themeVersion!==2){state.theme='emerald'; state.themeVersion=2;}
+  document.documentElement.dataset.theme=state.theme||'emerald';
+}
+let tmr;
+function save(){clearTimeout(tmr); tmr=setTimeout(async()=>{
+  try{await window.storage.set(KEY,JSON.stringify(state)); st(`Записано локално · ${alive().length} имота`);}
+  catch(e){st('Локалният запис не мина — свали бекъп.');}
+},140);}
+const st=t=>document.getElementById('status').innerHTML=t;
+
+/* ═══ Google Drive sync ═══ */
+function syn(text,cls){const b=document.getElementById('synbadge'); b.textContent=text; b.className='synbadge '+(cls||'')}
+function gisReady(){return !!(window.google&&google.accounts&&google.accounts.oauth2)}
+
+function getToken(){
+  return new Promise((res,rej)=>{
+    if(gToken&&Date.now()<gTokenExp-60000)return res(gToken);
+    if(!gisReady())return rej(new Error('Google скриптът не е зареден. Това работи само от хостнат HTTPS адрес, не вътре в чата.'));
+    if(!state.sync.clientId)return rej(new Error('Няма въведен Client ID. Настройки → Синхронизация.'));
+    tokenClient=google.accounts.oauth2.initTokenClient({
+      client_id:state.sync.clientId,
+      scope:state.sync.scope||'https://www.googleapis.com/auth/drive',
+      callback:r=>{
+        if(r.error)return rej(new Error('Google отказа достъп: '+r.error));
+        gToken=r.access_token; gTokenExp=Date.now()+(+r.expires_in||3600)*1000; res(gToken);
+      },
+      error_callback:e=>rej(new Error('Прозорецът за вход беше затворен или блокиран.'))
+    });
+    tokenClient.requestAccessToken({prompt:''});
+  });
+}
+async function api(url,opts){
+  const t=await getToken();
+  const o=Object.assign({},opts||{});
+  o.headers=Object.assign({Authorization:'Bearer '+t},o.headers||{});
+  const r=await fetch(url,o);
+  if(r.status===401){gToken=null; throw new Error('Токенът изтече. Натисни синхронизация пак.')}
+  if(!r.ok)throw new Error('Drive върна '+r.status+': '+(await r.text()).slice(0,140));
+  return r;
+}
+async function findOrCreateFile(){
+  if(state.sync.fileId)return state.sync.fileId;
+  const q=encodeURIComponent(`name='${DRIVE_FILE}' and trashed=false`);
+  const r=await api(`https://www.googleapis.com/drive/v3/files?q=${q}&fields=files(id,name)&spaces=drive`);
+  const j=await r.json();
+  if(j.files&&j.files.length){state.sync.fileId=j.files[0].id; return state.sync.fileId}
+  const meta={name:DRIVE_FILE,mimeType:'application/json'};
+  const body=new FormData();
+  body.append('metadata',new Blob([JSON.stringify(meta)],{type:'application/json'}));
+  body.append('file',new Blob([JSON.stringify({items:[],custom:[]})],{type:'application/json'}));
+  const c=await api('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',body});
+  state.sync.fileId=(await c.json()).id;
+  return state.sync.fileId;
+}
+function mergeById(localArr,remoteArr){
+  const m=new Map();
+  (remoteArr||[]).forEach(x=>m.set(x.id,x));
+  (localArr||[]).forEach(x=>{
+    const p=m.get(x.id);
+    if(!p||(+x.updatedAt||0)>=(+p.updatedAt||0))m.set(x.id,x);
+  });
+  return [...m.values()];
+}
+async function syncNow(){
+  if(syncing)return;
+  syncing=true; syn('синхронизира…');
+  try{
+    const id=await findOrCreateFile();
+    const r=await api(`https://www.googleapis.com/drive/v3/files/${id}?alt=media`);
+    let remote={};
+    try{remote=await r.json()}catch(e){remote={}}
+    const before=alive().length;
+    state.items=mergeById(state.items,remote.items).map(normalize);
+    state.custom=mergeById(state.custom,remote.custom);
+    allCriteria().forEach(c=>{if(state.weights[c.id]===undefined)state.weights[c.id]=c.w});
+    const payload={items:state.items,custom:state.custom,writtenAt:Date.now()};
+    await api(`https://www.googleapis.com/upload/drive/v3/files/${id}?uploadType=media`,
+      {method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    state.sync.lastSync=Date.now();
+    save(); paint();
+    const after=alive().length;
+    syn('синхронизирано','ok');
+    st(`Синхронизирано в ${new Date().toLocaleTimeString('bg-BG')} · ${after} имота${after>before?` (+${after-before} от другото устройство)`:''}`);
+  }catch(e){
+    syn('грешка','err');
+    st('<b>Синхронизацията не мина:</b> '+esc(e.message));
+  }finally{syncing=false}
+}
+
+/* ═══ view: list ═══ */
+function vList(){
+  const el=document.getElementById('v-list');
+  if(!alive().length){el.innerHTML=`<div class="empty"><b>Още няма имоти</b>Натисни + долу вдясно.</div>`; return}
+  const R=ranked();
+  const ps=live().map(perSqm).filter(Boolean);
+  const cheap=ps.length?Math.min(...ps):null;
+  el.innerHTML=R.map((r,i)=>{
+    const it=r.it,p=fpos(it),pp=perSqm(it);
+    const ex=EXTRAS.filter(e=>it.extras[e[0]]).length, dn=DD.filter(d=>it.dd[d[0]]).length;
+    const dead=isOut(it);
+    const col=dead?'var(--bad)':ramp(r.s);
+    return `<article class="card ${dead?'dead':''}" onclick="openEditor('${it.id}')" style="border-left:3px solid ${col}">
+      <div class="facade"><span class="rank">${dead?'—':String(i+1).padStart(2,'0')}</span>${facade(it)}</div>
+      <div class="cbody">
+        <div class="ctop">
+          <div style="min-width:0">
+            <h2 class="ctitle">${esc(it.title||'Без име')}</h2>
+            <div class="cmeta">${lb('type',it.type)} · <span class="num">${it.sqm||'?'}</span> кв.м · ${p?FLOOR_LABEL[p]:'етаж ?'}${it.floors?` <span class="num">${it.floor}/${it.floors}</span>`:''}</div>
+          </div>
+          <div class="scorebox">
+            <div class="pct" style="color:${col}">${r.s}%</div>
+            <div class="band" style="color:${col}">${dead?(it.status==='prodaden'?'продаден':'отпаднал'):band(r.s)}</div>
+          </div>
+        </div>
+        <div class="bar"><i style="width:${r.s}%; background:${col}"></i></div>
+        ${it.price?`<div class="money">${+it.remontBudget
+          ?`<s>${fmt(it.price)} €</s> → <b>${fmt(realPrice(it))} €</b> с ремонт`
+          :`<b>${fmt(it.price)} €</b>`}${pp?` · ${fmt(pp)} €/кв.м`:''}</div>`:''}
+        <div class="pills" style="margin-top:8px">
+          ${pp===cheap&&ps.length>1&&!dead?`<span class="pill on">най-евтин</span>`:''}
+          <span class="pill ${['obzaveden','remontiran'].includes(it.condition)?'on':'warn'}">${lb('condition',it.condition)}</span>
+          <span class="pill ${sc('transport',it.transport)>=80?'on':''}">${lb('transport',it.transport)}</span>
+          <span class="pill ${it.akt==='16'?'on':'warn'}">${lb('akt',it.akt)}</span>
+          <span class="pill ${ex>=4?'on':''}">Екстри ${ex}/5</span>
+          <span class="pill ${dn===5?'on':'warn'}">Проверки ${dn}/5</span>
+          ${it.status!=='nov'&&!dead?`<span class="pill on">${(STATUS.find(s=>s[0]===it.status)||['',''])[1]}</span>`:''}
+          ${dead?`<span class="pill bad">${(STATUS.find(s=>s[0]===it.status)||['',''])[1]}</span>`:''}
+        </div>
+        ${it.photos.length?`<div class="strip">${it.photos.map(x=>`<img src="${x}" alt="" onclick="event.stopPropagation();zoom(this.src)">`).join('')}</div>`:''}
+      </div>
+    </article>`;
+  }).join('');
+}
+function zoom(s){document.getElementById('lbImg').src=s; document.getElementById('lb').classList.add('open')}
+
+/* ═══ view: duel ═══ */
+function vDuel(){
+  const el=document.getElementById('v-duel'), L=live();
+  if(L.length<2){el.innerHTML=`<div class="empty"><b>Дуелът иска два имота</b>Добави поне два активни.</div>`; return}
+  if(!L.find(i=>i.id===state.duelA))state.duelA=L[0].id;
+  if(state.duelB===state.duelA||!L.find(i=>i.id===state.duelB))state.duelB=(L.find(i=>i.id!==state.duelA)||L[0]).id;
+  const A=L.find(i=>i.id===state.duelA), B=L.find(i=>i.id===state.duelB);
+  const sA=subScores(A), sB=subScores(B), tA=total(A), tB=total(B);
+  let wa=0,wb=0;
+  const opts=id=>L.map(i=>`<option value="${i.id}" ${i.id===id?'selected':''}>${esc(i.title)}</option>`).join('');
+  const val=(it,c)=>{
+    const k=c.id;
+    if(c.isCustom){const v=(it.custom||{})[k];
+      return c.kind==='bool'?(v?'Да':'Не'):(v===undefined||v===''?'—':`<span class="num">${v}</span>/5`)}
+    if(k==='sqm')return `<span class="num">${it.sqm||'?'}</span> кв.м`;
+    if(k==='floor'){const p=fpos(it); return (p?FLOOR_LABEL[p]:'—')+(it.floors?` <span class="num">${it.floor}/${it.floors}</span>`:'')}
+    if(k==='extras')return EXTRAS.filter(e=>it.extras[e[0]]).length+'/5';
+    if(k==='district')return esc(it.district||'')+' · '+lb('district',it.districtRating);
+    return lb(k,it[k]);
+  };
+  const rows=allCriteria().map(c=>{
+    const a=sA[c.id],b=sB[c.id];
+    if(a==null&&b==null)return '';
+    const av=a??0,bv=b??0,sum=Math.max(1,av+bv);
+    if(av>bv)wa++; else if(bv>av)wb++;
+    return `<div class="drow">
+      <div class="dside ${av>bv?'win':''}">${val(A,c)}<div class="dbar"><span style="width:${av/sum*100}%; background:${ramp(av)}"></span></div></div>
+      <div class="dlabel">${esc(c.label)}</div>
+      <div class="dside r ${bv>av?'win':''}">${val(B,c)}<div class="dbar r"><span style="width:${bv/sum*100}%; background:${ramp(bv)}"></span></div></div>
+    </div>`;
+  }).join('');
+  const pA=perSqm(A), pB=perSqm(B);
+  el.innerHTML=`
+    <div class="picker">
+      <select onchange="state.duelA=this.value;save();vDuel()">${opts(state.duelA)}</select>
+      <div class="vs">срещу</div>
+      <select onchange="state.duelB=this.value;save();vDuel()">${opts(state.duelB)}</select>
+    </div>
+    <div class="panel">
+      <div class="duelhead">
+        <div class="duelside">${facade(A,1.25)}<div class="pct" style="color:${ramp(tA)}">${tA}%</div>${pA?`<div class="num" style="font-size:11px;color:var(--muted)">${fmt(pA)} €/кв.м</div>`:''}</div>
+        <div class="vs">VS</div>
+        <div class="duelside">${facade(B,1.25)}<div class="pct" style="color:${ramp(tB)}">${tB}%</div>${pB?`<div class="num" style="font-size:11px;color:var(--muted)">${fmt(pB)} €/кв.м</div>`:''}</div>
+      </div>
+      ${rows}
+      <div class="tally"><span>${wa} критерия</span><span>${wb} критерия</span></div>
+    </div>
+    ${pA&&pB?`<div class="panel"><div class="hint"><b>Разликата в пари:</b> ${fmt(Math.abs(realPrice(A)-realPrice(B)))} €, при ${Math.abs(tA-tB)} процентни пункта разлика в оценката. Питай се дали пунктовете струват парите.</div></div>`:''}`;
+}
+
+/* ═══ view: value ═══ */
+function vValue(){
+  const el=document.getElementById('v-value');
+  const L=live().filter(i=>perSqm(i));
+  if(L.length<2){el.innerHTML=`<div class="empty"><b>Трябват цени</b>Попълни цена и квадратура на поне два имота.</div>`; return}
+  const pts=L.map(it=>({it,x:perSqm(it),y:total(it)}));
+  const xs=pts.map(p=>p.x),ys=pts.map(p=>p.y);
+  const x0=Math.min(...xs)*.96,x1=Math.max(...xs)*1.04;
+  const y0=Math.max(0,Math.min(...ys)-8),y1=Math.min(100,Math.max(...ys)+8);
+  const W=340,H=250,mL=36,mB=30,mT=16,mR=12;
+  const px=v=>mL+(v-x0)/Math.max(1,x1-x0)*(W-mL-mR);
+  const py=v=>H-mB-(v-y0)/Math.max(1,y1-y0)*(H-mT-mB);
+  const dots=pts.map(p=>`<circle cx="${px(p.x)}" cy="${py(p.y)}" r="6.5" fill="${ramp(p.y)}" opacity=".9"/>
+    <text x="${px(p.x)}" y="${py(p.y)-11}" text-anchor="middle" fill="var(--ink)">${esc(p.it.title.slice(0,14))}</text>`).join('');
+  const best=pts.slice().sort((a,b)=>(b.y/b.x)-(a.y/a.x))[0];
+  el.innerHTML=`<div class="panel">
+    <div class="sechead"><div class="eyebrow">Оценка спрямо реална цена</div></div>
+    <svg class="chart" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
+      <line x1="${mL}" y1="${mT}" x2="${mL}" y2="${H-mB}" stroke="var(--line)"/>
+      <line x1="${mL}" y1="${H-mB}" x2="${W-mR}" y2="${H-mB}" stroke="var(--line)"/>
+      <text x="${mL}" y="${H-mB+14}" text-anchor="start">${fmt(Math.round(x0))}</text>
+      <text x="${W-mR}" y="${H-mB+14}" text-anchor="end">${fmt(Math.round(x1))} €/кв.м</text>
+      <text x="${mL-6}" y="${py(y1)+4}" text-anchor="end">${Math.round(y1)}%</text>
+      <text x="${mL-6}" y="${py(y0)+4}" text-anchor="end">${Math.round(y0)}%</text>
+      ${dots}
+    </svg>
+    <div class="hint" style="margin-top:8px">Горе вляво е най-добрата сделка. Цената е <b>с бюджета за ремонт</b>, не офертната.</div>
+  </div>
+  <div class="panel"><div class="hint"><b>Най-много оценка за парите:</b> ${esc(best.it.title)} — ${best.y}% при ${fmt(best.x)} €/кв.м. Аритметика, не съвет.</div></div>`;
+}
+
+/* ═══ view: settings ═══ */
+function vSet(){
+  const el=document.getElementById('v-set');
+  const A=allCriteria();
+  const tot=A.reduce((a,c)=>a+ +state.weights[c.id],0);
+  const last=state.sync.lastSync?new Date(state.sync.lastSync).toLocaleString('bg-BG'):'никога';
+  el.innerHTML=`
+  <div class="panel">
+    <div class="sechead"><div class="eyebrow">Вид</div></div>
+    <div class="themes">${THEMES.map(t=>`<button class="swatch" aria-pressed="${state.theme===t[0]}" onclick="setTheme('${t[0]}')">
+      <span class="bars">${t[2].map(c=>`<i style="background:${c}; border:1px solid rgba(128,128,128,.35)"></i>`).join('')}</span>${t[1]}</button>`).join('')}</div>
+    <p class="hint" style="margin-top:10px">Смени и виж на телефона си — това е по-надеждно от снимка.</p>
+    ${state.theme==='emerald'?`<div style="margin-top:12px; border-top:1px solid var(--hair); padding-top:11px">
+      <div class="eyebrow" style="margin-bottom:8px">Правилото 60-30-10</div>
+      ${[['#F9FAFB','60% фон','страници и полета'],['#064E3B','30% дълбоко','ленти, заглавия, брандинг'],['#0D9488','10% акцент','бутони и действия'],['#EF4444','сигнал','само продаден / отпаднал / изтриване']]
+        .map(c=>`<div style="display:flex; align-items:center; gap:9px; padding:5px 0; font-size:12px">
+          <i style="width:22px; height:22px; border-radius:5px; background:${c[0]}; border:1px solid var(--line); flex:none"></i>
+          <b style="font-size:12px">${c[1]}</b><span class="hint">${c[2]}</span></div>`).join('')}
+      <p class="hint" style="margin-top:8px">Оценката ползва собствена скала кехлибар → изумруд, за да не се бърка с кораловото — то значи <b>статус</b>, не лоша оценка.</p>
+    </div>`:''}
+  </div>
+
+  <div class="panel">
+    <div class="sechead"><div class="eyebrow">Тежести</div><span class="wval">сбор ${tot}</span></div>
+    ${A.map(c=>`<div class="wrow">
+      <label for="w-${c.id}">${esc(c.label)}${c.isCustom?' <span class="hint">свой</span>':''}</label>
+      <input type="range" id="w-${c.id}" min="0" max="30" value="${state.weights[c.id]}" oninput="setW('${c.id}',this.value)">
+      <span class="wval" id="wv-${c.id}">${state.weights[c.id]}</span></div>`).join('')}
+    <p class="hint" style="margin-top:10px">Критерий, който не важи за даден имот (асансьор на първи етаж, непопълнен свой критерий), отпада и другите поемат тежестта му. Тежестите са <b>лични за това устройство</b> — не се синхронизират. Така двамата може да гледате едни и същи имоти с различни приоритети.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sechead"><div class="eyebrow">Свои критерии</div></div>
+    ${(state.custom||[]).length?state.custom.map(c=>`<div class="wrow">
+      <span>${esc(c.label)} <span class="hint">${c.kind==='bool'?'да/не':'0–5'}</span></span>
+      <span class="hint">тежест ${state.weights[c.id]}</span>
+      <button class="del" onclick="delCustom('${c.id}')">Изтрий</button></div>`).join(''):`<p class="hint">Още няма. Например: изложение, паркомясто, ТЕЦ или газ, шум от булеварда, тераса, мазе.</p>`}
+    <div style="margin-top:12px">
+      <span class="sub">Име на критерия</span>
+      <input type="text" id="newCritName" placeholder="напр. Изложение" style="margin-bottom:9px">
+      <div class="seg" id="newCritKind">
+        <button type="button" aria-pressed="true" onclick="pickKind('scale')">Скала 0–5</button>
+        <button type="button" aria-pressed="false" onclick="pickKind('bool')">Да / Не</button>
+      </div>
+      <button class="btn" style="margin-top:9px" onclick="addCustom()">Добави критерий</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sechead"><div class="eyebrow">Синхронизация с Google Drive</div></div>
+    <span class="sub">OAuth Client ID</span>
+    <input type="text" id="gClientId" placeholder="....apps.googleusercontent.com" value="${esc(state.sync.clientId)}"
+      oninput="state.sync.clientId=this.value.trim();save()">
+    <span class="sub" style="margin-top:10px">Обхват на достъпа</span>
+    <div class="seg" id="scopeSeg">
+      <button type="button" aria-pressed="${state.sync.scope.endsWith('/drive')}" onclick="setScope('https://www.googleapis.com/auth/drive')">Цял Drive · споделяне между двама</button>
+      <button type="button" aria-pressed="${state.sync.scope.endsWith('drive.file')}" onclick="setScope('https://www.googleapis.com/auth/drive.file')">Само свои файлове · само за теб</button>
+    </div>
+    <div style="display:grid; gap:8px; margin-top:10px">
+      <button class="btn" onclick="syncNow()">Синхронизирай сега</button>
+      <button class="btn g" onclick="state.sync.fileId='';save();st('Връзката с файла е забравена. Следващата синхронизация ще го намери или създаде наново.')">Забрави файла в Drive</button>
+    </div>
+    <p class="hint" style="margin-top:10px">Последна синхронизация: ${last}.<br>
+    Обединява <b>по имот</b> — по-новата редакция печели, а не целият файл. Изтритите остават като маркер, за да не възкръсват.<br>
+    <b>Работи само от хостнат HTTPS адрес</b> (GitHub Pages), не вътре в чата — Google не пуска OAuth от sandbox.<br>
+    При „Тестване“ Google показва екран „неверифицирано приложение“ — минава се през <i>Разширени → Продължи</i>. Достъпът се подновява на всеки 7 дни.</p>
+  </div>
+
+  <div class="panel">
+    <div class="sechead"><div class="eyebrow">Скала за квадратурата</div></div>
+    <div class="g2">
+      <div><span class="sub">0 точки при</span><input type="number" value="${state.sqmMin}" oninput="state.sqmMin=+this.value;save();paint()"></div>
+      <div><span class="sub">100 точки при</span><input type="number" value="${state.sqmMax}" oninput="state.sqmMax=+this.value;save();paint()"></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="sechead"><div class="eyebrow">Данни</div></div>
+    <div style="display:grid; gap:8px">
+      <button class="btn g" onclick="exportData()">Свали бекъп (JSON)</button>
+      <button class="btn g" onclick="importData()">Зареди бекъп</button>
+      <button class="btn g" onclick="resetW()">Върни стандартните тежести</button>
+    </div>
+  </div>`;
+}
+let newKind='scale';
+function pickKind(k){newKind=k; document.querySelectorAll('#newCritKind button').forEach((b,i)=>b.setAttribute('aria-pressed', (i===0)===(k==='scale')))}
+function addCustom(){
+  const n=document.getElementById('newCritName').value.trim();
+  if(!n){st('Дай име на критерия.'); return}
+  const id='c'+Date.now().toString(36);
+  state.custom.push({id,label:n,kind:newKind,w:8,updatedAt:Date.now()});
+  state.weights[id]=8; save(); paint();
+  st('Добавен критерий „'+esc(n)+'“ — попълва се във всеки имот.');
+}
+function delCustom(id){
+  const c=state.custom.find(x=>x.id===id);
+  if(!confirm('Да махна критерия „'+(c?c.label:'')+'“ от всички имоти?'))return;
+  state.custom=state.custom.filter(x=>x.id!==id);
+  delete state.weights[id];
+  state.items.forEach(i=>{if(i.custom)delete i.custom[id]});
+  save(); paint();
+}
+function setScope(v){state.sync.scope=v; gToken=null; save(); paint();
+  st(v.endsWith('drive.file')?'Смени на минимален достъп. Файл, създаден от другия телефон, няма да се вижда.':'Смени на пълен достъп — нужно, за да четете един и същ файл. Google ще покаже екран „неверифицирано приложение“.');}
+function setTheme(t){state.theme=t; document.documentElement.dataset.theme=t; save(); paint()}
+function setW(id,v){
+  state.weights[id]=+v;
+  const e=document.getElementById('wv-'+id); if(e)e.textContent=v;
+  save(); vList(); vDuel(); vValue();
+}
+function resetW(){allCriteria().forEach(c=>state.weights[c.id]=c.w); save(); paint()}
+
+/* ═══ editor ═══ */
+function blank(){return normalize({id:'i'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
+  title:'',district:'',url:'',price:'',remontBudget:'',sqm:'',floor:'',floors:'',
+  type:'tuhla',condition:'remontiran',districtRating:'c',transport:'metro15',lift:'da',akt:'16'})}
+function seg(key,group){
+  return `<div class="seg" data-seg="${key}">${OPT[group].map(o=>
+    `<button type="button" aria-pressed="${draft[key]===o[0]}" onclick="pick('${key}','${o[0]}')">${o[1]}</button>`).join('')}</div>`;
+}
+function pick(key,val){draft[key]=val; renderForm(true)}
+function pickCustom(id,val){draft.custom=draft.custom||{}; draft.custom[id]=val; renderForm(true)}
+function note(k){return `<div class="note"><input type="text" id="note-${k}" placeholder="Бележка или бонус…" value="${esc((draft.notes||{})[k]||'')}"></div>`}
+function fld(t,em,inner,nk){return `<div class="fld"><span class="flabel"><b>${t}</b>${em?` <em>${em}</em>`:''}</span>${inner}${nk?note(nk):''}</div>`}
+function openEditor(id){
+  const src=id?state.items.find(i=>i.id===id):blank();
+  if(!src)return;
+  editing=id||null;
+  draft=normalize(JSON.parse(JSON.stringify(src)));
+  draftPhotos=draft.photos.slice();
+  document.getElementById('sheetTitle').textContent=id?'Редактиране':'Нов имот';
+  renderForm();
+  const sh=document.getElementById('sheet');
+  sh.classList.add('open'); sh.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function grab(){
+  const v=id=>{const e=document.getElementById('f-'+id); return e?e.value:draft[id]};
+  ['title','district','url','price','remontBudget','sqm','floor','floors'].forEach(k=>draft[k]=v(k));
+  EXTRAS.forEach(e=>{const el=document.getElementById('x-'+e[0]); if(el)draft.extras[e[0]]=el.checked});
+  DD.forEach(e=>{const el=document.getElementById('d-'+e[0]); if(el)draft.dd[e[0]]=el.checked});
+  draft.notes={};
+  allCriteria().map(c=>c.id).concat(['dd']).forEach(k=>{
+    const e=document.getElementById('note-'+k); if(e&&e.value.trim())draft.notes[k]=e.value.trim();});
+  draft.photos=draftPhotos.slice();
+}
+function customField(c){
+  const v=(draft.custom||{})[c.id];
+  if(c.kind==='bool'){
+    return `<div class="seg" data-seg="${c.id}">
+      <button type="button" aria-pressed="${v===true}" onclick="pickCustom('${c.id}',true)">Да</button>
+      <button type="button" aria-pressed="${v===false}" onclick="pickCustom('${c.id}',false)">Не</button>
+      <button type="button" aria-pressed="${v===undefined||v===''}" onclick="pickCustom('${c.id}','')">Не важи</button></div>`;
+  }
+  return `<div class="seg" data-seg="${c.id}">
+    ${[0,1,2,3,4,5].map(n=>`<button type="button" aria-pressed="${String(v)===String(n)}" onclick="pickCustom('${c.id}',${n})">${n}</button>`).join('')}
+    <button type="button" aria-pressed="${v===undefined||v===''}" onclick="pickCustom('${c.id}','')">—</button></div>`;
+}
+function renderForm(keep){
+  if(keep)grab();
+  const p=total(draft);
+  document.getElementById('form').innerHTML=`
+    <div class="panel" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:11px">
+      <div><div class="eyebrow">Оценка на живо</div>
+        <div id="liveSub" style="font-size:12px; color:var(--muted); margin-top:3px">${band(p)}${+draft.remontBudget?` · реално ${fmt(realPrice(draft))} €`:''}</div></div>
+      <div class="pct" id="livePct" style="color:${ramp(p)}">${p}%</div>
+    </div>
+    <div class="fld">
+      <span class="flabel"><b>Как да го наричам</b></span>
+      <input type="text" id="f-title" placeholder="напр. Обеля 2, ул. Илия Георгов" value="${esc(draft.title)}">
+      <div class="g2" style="margin-top:9px">
+        <div><span class="sub">Цена (€)</span><input type="number" id="f-price" inputmode="numeric" value="${draft.price}" oninput="renderLite()"></div>
+        <div><span class="sub">Бюджет ремонт (€)</span><input type="number" id="f-remontBudget" inputmode="numeric" value="${draft.remontBudget}" oninput="renderLite()"></div>
+      </div>
+      <div style="margin-top:9px"><span class="sub">Линк към обявата</span><input type="url" id="f-url" placeholder="https://" value="${esc(draft.url)}"></div>
+    </div>
+    ${fld('Статус на огледа','',`<div class="seg">${STATUS.map(o=>
+      `<button type="button" aria-pressed="${draft.status===o[0]}" onclick="pick('status','${o[0]}')">${o[1]}</button>`).join('')}</div>`)}
+    ${fld('1 · Конструкция','тухла = 100',seg('type','type'),'type')}
+    ${fld('2 · Квадратура',`${state.sqmMin}–${state.sqmMax} кв.м`,`<input type="number" id="f-sqm" inputmode="numeric" placeholder="кв.м" value="${draft.sqm}" oninput="renderLite()">`,'sqm')}
+    ${fld('3 · Етаж','среден = 100',`<div class="g2">
+      <div><span class="sub">етаж</span><input type="number" id="f-floor" inputmode="numeric" value="${draft.floor}" oninput="renderLite()"></div>
+      <div><span class="sub">от общо</span><input type="number" id="f-floors" inputmode="numeric" value="${draft.floors}" oninput="renderLite()"></div></div>`,'floor')}
+    ${fld('4 · Състояние','',seg('condition','condition'),'condition')}
+    ${fld('4б · Кое точно е ремонтирано','',`<div class="checks">${EXTRAS.map(e=>
+      `<label class="check ${draft.extras[e[0]]?'on':''}"><input type="checkbox" id="x-${e[0]}" ${draft.extras[e[0]]?'checked':''}
+        onchange="this.parentElement.classList.toggle('on',this.checked);renderLite()"> ${e[1]}</label>`).join('')}</div>`,'extras')}
+    ${fld('5 · Квартал','',`<input type="text" id="f-district" placeholder="напр. Обеля 2" value="${esc(draft.district)}" style="margin-bottom:9px">${seg('districtRating','district')}`,'district')}
+    ${fld('6 · Транспорт','метро = 100',seg('transport','transport'),'transport')}
+    ${fld('7 · Асансьор','',seg('lift','lift'),'lift')}
+    ${fld('8 · Акт','',seg('akt','akt'),'akt')}
+    ${(state.custom||[]).map(c=>fld(esc(c.label),c.kind==='bool'?'да / не':'0–5',customField(c),c.id)).join('')}
+    ${fld('Проверки преди капаро','не влиза в процента',`<div class="checks">${DD.map(e=>
+      `<label class="check ${draft.dd[e[0]]?'on':''}"><input type="checkbox" id="d-${e[0]}" ${draft.dd[e[0]]?'checked':''}
+        onchange="this.parentElement.classList.toggle('on',this.checked)"> ${e[1]}</label>`).join('')}</div>`,'dd')}
+    <div class="fld">
+      <span class="flabel"><b>Снимки</b> <em>до 4</em></span>
+      <input type="file" id="f-photos" accept="image/*" multiple onchange="addPhotos(this)">
+      <div class="strip" id="pstrip"></div>
+    </div>
+    ${editing?`<button class="btn d" onclick="delItem()">Изтрий имота</button>`:''}`;
+  drawPhotos();
+}
+function renderLite(){
+  grab();
+  const p=total(draft);
+  const pe=document.getElementById('livePct'), se=document.getElementById('liveSub');
+  if(pe){pe.textContent=p+'%'; pe.style.color=ramp(p)}
+  if(se)se.textContent=band(p)+(+draft.remontBudget?` · реално ${fmt(realPrice(draft))} €`:'');
+}
+function drawPhotos(){
+  const s=document.getElementById('pstrip'); if(!s)return;
+  s.innerHTML=draftPhotos.map((p,i)=>`<span style="position:relative; flex:none">
+    <img src="${p}" alt="">
+    <button style="position:absolute; top:3px; right:3px; width:20px; height:20px; border-radius:10px; background:rgba(0,0,0,.7); color:#fff; font-size:13px; line-height:1"
+      onclick="draftPhotos.splice(${i},1);drawPhotos()">×</button></span>`).join('');
+}
+function addPhotos(input){
+  Array.from(input.files).slice(0,4-draftPhotos.length).forEach(f=>{
+    const rd=new FileReader();
+    rd.onload=()=>{const img=new Image();
+      img.onload=()=>{const m=800,s=Math.min(1,m/Math.max(img.width,img.height));
+        const c=document.createElement('canvas'); c.width=Math.round(img.width*s); c.height=Math.round(img.height*s);
+        c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+        draftPhotos.push(c.toDataURL('image/jpeg',.68)); drawPhotos();};
+      img.src=rd.result;};
+    rd.readAsDataURL(f);});
+  input.value='';
+}
+function closeSheet(){
+  const sh=document.getElementById('sheet');
+  sh.classList.remove('open'); sh.setAttribute('aria-hidden','true');
+  document.body.style.overflow=''; editing=null;
+}
+function saveItem(){
+  grab();
+  draft.updatedAt=Date.now();
+  const i=state.items.findIndex(x=>x.id===draft.id);
+  if(i>=0)state.items[i]=draft; else state.items.push(draft);
+  save(); closeSheet(); paint();
+}
+function delItem(){
+  if(!confirm('Да изтрия „'+(draft.title||'този имот')+'“? Ако само е отпаднал или продаден, смени статуса вместо това — така помниш защо.'))return;
+  const i=state.items.findIndex(x=>x.id===draft.id);
+  if(i>=0)state.items[i]={id:draft.id,deleted:true,updatedAt:Date.now(),title:draft.title};
+  save(); closeSheet(); paint();
+}
+
+/* ═══ backup ═══ */
+function exportData(){
+  const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(b); a.download='imoti-'+new Date().toISOString().slice(0,10)+'.json'; a.click();
+  st('Бекъпът е свален.');
+}
+function importData(){
+  const i=document.createElement('input'); i.type='file'; i.accept='application/json';
+  i.onchange=()=>{const r=new FileReader();
+    r.onload=()=>{try{const d=JSON.parse(r.result); if(!d.items)throw 0;
+      state.items=mergeById(state.items,d.items).map(normalize);
+      state.custom=mergeById(state.custom,d.custom||[]);
+      if(d.weights)Object.assign(state.weights,d.weights);
+      if(d.sqmMin)state.sqmMin=d.sqmMin; if(d.sqmMax)state.sqmMax=d.sqmMax;
+      allCriteria().forEach(c=>{if(state.weights[c.id]===undefined)state.weights[c.id]=c.w});
+      save(); paint(); st('Обединено · '+alive().length+' имота');
+    }catch(e){st('Файлът не е разпознат.')}};
+    r.readAsText(i.files[0]);};
+  i.click();
+}
+
+/* ═══ plumbing ═══ */
+function paint(){vList(); vDuel(); vValue(); vSet()}
+document.querySelectorAll('.tabbar button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tabbar button').forEach(x=>x.setAttribute('aria-selected',x===b));
+  ['list','duel','value','set'].forEach(v=>document.getElementById('v-'+v).hidden=(v!==b.dataset.v));
+  document.getElementById('crumb').textContent={list:'София · оглед',duel:'Един срещу друг',value:'Оценка / цена',set:'Настройки'}[b.dataset.v];
+  try{window.scrollTo(0,0)}catch(e){}
+});
+document.getElementById('addBtn').onclick=()=>openEditor();
+document.getElementById('saveBtn').onclick=saveItem;
+document.getElementById('cancelBtn').onclick=closeSheet;
+document.getElementById('backupBtn').onclick=exportData;
+document.getElementById('lb').onclick=e=>e.currentTarget.classList.remove('open');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();document.getElementById('lb').classList.remove('open')}});
+
+const SEED={"items": [{"id": "imtsoqqvxn7hw", "title": "Обеля 2 · тристаен панел", "district": "Обеля 2", "url": "", "price": "179000", "sqm": "85", "floor": "8", "floors": "8", "type": "panel", "condition": "remontiran", "districtRating": "c", "transport": "metro5", "lift": "da", "akt": "16", "extras": {"banya": true, "kuhnya": false, "el": false, "dograma": true, "izolaciya": true}, "notes": {"type": "Панелът държи цена, но саниране предстои.", "floor": "Последен — покривът е ремонтиран. Има документ.", "condition": "Няма мебели и подовата настилка трябва да се смени."}, "photos": [], "status": "nov", "dd": {}, "remontBudget": "", "custom": {}, "updatedAt": 1757308800000}, {"id": "imtsoqqvxg2jj", "title": "Люлин 8 -  тухла", "district": "Люлин 8", "url": "", "price": "187000", "sqm": "80", "floor": "5", "floors": "6", "type": "tuhla", "condition": "remontiran", "districtRating": "c", "transport": "metro15", "lift": "da", "akt": "16", "extras": {"banya": false, "kuhnya": false, "el": false, "dograma": false, "izolaciya": true}, "notes": {"type": "стара - 2004", "extras": "Преходен хол, 3 тераси, малки спални", "district": "По-далече от вас, но метрото компенсира."}, "photos": [], "status": "nov", "dd": {}, "remontBudget": "", "custom": {}, "updatedAt": 1757308800000}, {"id": "imtsos3e9daya", "title": "Обеля 1 - Ново строителство", "district": "Обеля 1", "url": "", "price": "200000", "sqm": "85", "floor": "2", "floors": "7", "type": "tuhla", "condition": "zamazka", "districtRating": "c", "transport": "metro5", "lift": "da", "akt": "15", "extras": {"banya": false, "kuhnya": false, "el": true, "dograma": true, "izolaciya": true}, "notes": {"floor": "Първи етаж на височината на втори етаж", "condition": "На замазка !!!", "extras": "Ново строителство"}, "photos": [], "status": "nov", "dd": {}, "remontBudget": "", "custom": {}, "updatedAt": 1757308800000}], "weights": {"type": 15, "sqm": 12, "floor": 10, "condition": 18, "extras": 10, "district": 12, "transport": 12, "lift": 6, "akt": 10}, "custom": [], "sqmMin": 55, "sqmMax": 100, "theme": "emerald", "sync": {"clientId": "", "fileId": "", "lastSync": 0}};
+(async function(){
+  await load(); paint();
+  syn(state.sync.clientId?'готов за синхронизация':'локално');
+  st(`${alive().length} имота · тема „${(THEMES.find(t=>t[0]===state.theme)||THEMES[0])[1]}“`);
+})();
+</script>
+</body>
+</html>
