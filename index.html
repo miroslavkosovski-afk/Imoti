@@ -63,7 +63,7 @@
   }
   .topbar h1{font-size:19px; margin:2px 0 0; letter-spacing:-.02em; font-weight:680}
   [data-theme="cadastre"] .topbar h1{font-variant:small-caps; letter-spacing:.02em}
-  main{padding:14px 14px calc(var(--tabh) + 20px); max-width:760px; margin:0 auto; min-height:calc(100dvh - 128px); box-sizing:border-box}
+  main{padding:14px 14px calc(var(--tabh) + 86px); max-width:760px; margin:0 auto; min-height:calc(100dvh - 128px); box-sizing:border-box; display:flex; flex-direction:column}
 
   .tabbar{
     position:fixed; left:0; right:0; bottom:0; z-index:30; height:var(--tabh);
@@ -190,7 +190,7 @@
   .sub{font-size:11px; color:var(--muted); display:block; margin-bottom:4px; font-family:var(--mono); letter-spacing:.05em}
   .empty{background:var(--card); border-radius:14px; padding:38px 22px; text-align:center; color:var(--muted)}
   .empty b{display:block; color:var(--ink); font-size:17px; margin-bottom:6px}
-  .status{font-family:var(--mono); font-size:10.5px; color:var(--muted); text-align:center; margin-top:16px; line-height:1.6}
+  .status{font-family:var(--mono); font-size:10.5px; color:var(--muted); text-align:center; margin-top:auto; padding-top:16px; line-height:1.6}
   .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.94); display:none; align-items:center; justify-content:center; z-index:60; padding:16px}
   .lightbox.open{display:flex}
   .lightbox img{max-width:100%; max-height:100%; object-fit:contain; border-radius:8px}
