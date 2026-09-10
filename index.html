@@ -223,7 +223,6 @@
   [data-theme="emerald"] .flabel b{color:var(--deep)}
   [data-theme="emerald"] .tally{border-top-color:var(--deep)}
   [data-theme="emerald"] .fab{color:#fff; box-shadow:0 6px 18px rgba(13,148,136,.42)}
-  [data-theme="emerald"] .btn{color:#fff}
   [data-theme="emerald"] .seg button[aria-pressed="true"]{color:#fff}
   [data-theme="emerald"] .check.on{border-color:var(--accent)}
   [data-theme="emerald"] .sheet > header{background:var(--deep); color:var(--onDeep)}
@@ -278,6 +277,9 @@
 <script>
 const KEY='imoti-v3';
 const DRIVE_FILE='imoti-data.json';
+// Client ID е публичен по замисъл — защитата е в Authorized JavaScript origins.
+// Client secret НЕ се използва тук и не трябва да съществува в браузърен код.
+const DEFAULT_CLIENT_ID='649236760915-6r46pdn0g0mlm1as7chnv2ke9lsqqis3.apps.googleusercontent.com';
 
 const CORE=[
   {id:'type',label:'Конструкция',w:15},
@@ -410,6 +412,7 @@ async function load(){
   if(!state.items.length){Object.assign(state,JSON.parse(JSON.stringify(SEED)));}
   state.custom=state.custom||[];
   state.sync=Object.assign({clientId:'',fileId:'',lastSync:0,scope:'https://www.googleapis.com/auth/drive'},state.sync||{});
+  if(!state.sync.clientId)state.sync.clientId=DEFAULT_CLIENT_ID;
   allCriteria().forEach(c=>{if(state.weights[c.id]===undefined)state.weights[c.id]=c.w});
   state.items.forEach(normalize);
   if(state.themeVersion!==2){state.theme='emerald'; state.themeVersion=2;}
@@ -678,7 +681,7 @@ function vSet(){
 
   <div class="panel">
     <div class="sechead"><div class="eyebrow">Синхронизация с Google Drive</div></div>
-    <span class="sub">OAuth Client ID</span>
+    <span class="sub">OAuth Client ID <span style="text-transform:none; letter-spacing:0">(вграден — публичен по замисъл)</span></span>
     <input type="text" id="gClientId" placeholder="....apps.googleusercontent.com" value="${esc(state.sync.clientId)}"
       oninput="state.sync.clientId=this.value.trim();save()">
     <span class="sub" style="margin-top:10px">Обхват на достъпа</span>
@@ -689,8 +692,10 @@ function vSet(){
     <div style="display:grid; gap:8px; margin-top:10px">
       <button class="btn" onclick="syncNow()">Синхронизирай сега</button>
       <button class="btn g" onclick="state.sync.fileId='';save();st('Връзката с файла е забравена. Следващата синхронизация ще го намери или създаде наново.')">Забрави файла в Drive</button>
+      <button class="btn g" onclick="state.sync.clientId=DEFAULT_CLIENT_ID;gToken=null;save();paint();st('Върнат вграденият Client ID.')">Върни вградения Client ID</button>
     </div>
-    <p class="hint" style="margin-top:10px">Последна синхронизация: ${last}.<br>
+    <p class="hint" style="margin-top:10px">Никога не поставяй тук <b>client secret</b> — това приложение не използва такъв и не бива да съществува в браузърен код.<br>
+    Последна синхронизация: ${last}.<br>
     Обединява <b>по имот</b> — по-новата редакция печели, а не целият файл. Изтритите остават като маркер, за да не възкръсват.<br>
     <b>Работи само от хостнат HTTPS адрес</b> (GitHub Pages), не вътре в чата — Google не пуска OAuth от sandbox.<br>
     При „Тестване“ Google показва екран „неверифицирано приложение“ — минава се през <i>Разширени → Продължи</i>. Достъпът се подновява на всеки 7 дни.</p>
