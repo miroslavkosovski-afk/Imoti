@@ -63,7 +63,7 @@
   }
   .topbar h1{font-size:19px; margin:2px 0 0; letter-spacing:-.02em; font-weight:680}
   [data-theme="cadastre"] .topbar h1{font-variant:small-caps; letter-spacing:.02em}
-  main{padding:14px 14px calc(var(--tabh) + 86px); max-width:760px; margin:0 auto; min-height:calc(100dvh - 128px); box-sizing:border-box; display:flex; flex-direction:column}
+  main{padding:14px 14px calc(var(--tabh) + 86px); max-width:760px; margin:0 auto; min-height:calc(var(--vh100, 100vh) - 128px); box-sizing:border-box; display:flex; flex-direction:column}
 
   .tabbar{
     position:fixed; left:0; right:0; bottom:0; z-index:30; height:var(--tabh);
@@ -922,6 +922,11 @@ document.getElementById('lb').onclick=e=>e.currentTarget.classList.remove('open'
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();document.getElementById('lb').classList.remove('open')}});
 
 const SEED={"items": [{"id": "imtsoqqvxn7hw", "title": "Обеля 2 · тристаен панел", "district": "Обеля 2", "url": "", "price": "179000", "sqm": "85", "floor": "8", "floors": "8", "type": "panel", "condition": "remontiran", "districtRating": "c", "transport": "metro5", "lift": "da", "akt": "16", "extras": {"banya": true, "kuhnya": false, "el": false, "dograma": true, "izolaciya": true}, "notes": {"type": "Панелът държи цена, но саниране предстои.", "floor": "Последен — покривът е ремонтиран. Има документ.", "condition": "Няма мебели и подовата настилка трябва да се смени."}, "photos": [], "status": "nov", "dd": {}, "remontBudget": "", "custom": {}, "updatedAt": 1757308800000}, {"id": "imtsoqqvxg2jj", "title": "Люлин 8 -  тухла", "district": "Люлин 8", "url": "", "price": "187000", "sqm": "80", "floor": "5", "floors": "6", "type": "tuhla", "condition": "remontiran", "districtRating": "c", "transport": "metro15", "lift": "da", "akt": "16", "extras": {"banya": false, "kuhnya": false, "el": false, "dograma": false, "izolaciya": true}, "notes": {"type": "стара - 2004", "extras": "Преходен хол, 3 тераси, малки спални", "district": "По-далече от вас, но метрото компенсира."}, "photos": [], "status": "nov", "dd": {}, "remontBudget": "", "custom": {}, "updatedAt": 1757308800000}, {"id": "imtsos3e9daya", "title": "Обеля 1 - Ново строителство", "district": "Обеля 1", "url": "", "price": "200000", "sqm": "85", "floor": "2", "floors": "7", "type": "tuhla", "condition": "zamazka", "districtRating": "c", "transport": "metro5", "lift": "da", "akt": "15", "extras": {"banya": false, "kuhnya": false, "el": true, "dograma": true, "izolaciya": true}, "notes": {"floor": "Първи етаж на височината на втори етаж", "condition": "На замазка !!!", "extras": "Ново строителство"}, "photos": [], "status": "nov", "dd": {}, "remontBudget": "", "custom": {}, "updatedAt": 1757308800000}], "weights": {"type": 15, "sqm": 12, "floor": 10, "condition": 18, "extras": 10, "district": 12, "transport": 12, "lift": 6, "akt": 10}, "custom": [], "sqmMin": 55, "sqmMax": 100, "theme": "emerald", "sync": {"clientId": "", "fileId": "", "lastSync": 0}};
+function setVH(){document.documentElement.style.setProperty('--vh100', window.innerHeight+'px')}
+setVH();
+window.addEventListener('resize',setVH);
+window.addEventListener('orientationchange',()=>setTimeout(setVH,150));
+
 (async function(){
   await load(); paint();
   syn(state.sync.clientId?'готов за синхронизация':'локално');
